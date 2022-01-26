@@ -1,0 +1,49 @@
+---
+- name: Debian/Ubuntu | Build package list
+  ansible.builtin.set_fact:
+    packages_debian_merged: "{{ packages_debian_merged + [item] }}"
+  with_items:
+    - "{{ packages }}"
+    - "{{ packages_group }}"
+    - "{{ packages_host }}"
+    - "{{ packages_debian }}"
+    - "{{ packages_debian_host }}"
+    - "{{ packages_debian_group }}"
+
+- name: Debian/Ubuntu | Install packages
+  ansible.builtin.package:
+    name: "{{ packages_debian_merged }}"
+    state: present
+  when:
+    - ansible_distribution in [ "Debian", "Ubuntu" ]
+
+- name: RedHat/CentOS | Build package list
+  ansible.builtin.set_fact:
+    packages_redhat_merged: "{{ packages_redhat_merged + [item] }}"
+  with_items:
+    - "{{ packages }}"
+    - "{{ packages_group }}"
+    - "{{ packages_host }}"
+    - "{{ packages_redhat }}"
+    - "{{ packages_redhat_host }}"
+    - "{{ packages_redhat_group }}"
+
+- name: RedHat/CentOS | Install packages
+  ansible.builtin.package:
+    name: "{{ packages_redhat_merged }}"
+    state: present
+  when:
+    - ansible_distribution in [ "CentOS", "RedHat", "Fedora", "Rocky", "AlmaLinux", "Amazon" ]
+
+- name: Build absent list
+  ansible.builtin.set_fact:
+    packages_absent_merged: "{{ packages_absent_merged + [item] }}"
+  with_items:
+    - "{{ packages_absent }}"
+    - "{{ packages_absent_group }}"
+    - "{{ packages_absent_host }}"
+
+- name: Remove packages
+  ansible.builtin.package:
+    name: "{{ packages_absent_merged }}"
+    state: absent

@@ -1,0 +1,102 @@
+---
+- name: Verify
+  hosts: all
+  become: true
+  gather_facts: true
+  vars:
+    molecule:
+      - "ethtool"
+    molecule_group:
+      - "bc"
+    molecule_host:
+      - "zip"
+
+    molecule_debian:
+      - "nethogs"
+    molecule_debian_host: []
+    molecule_debian_group: []
+
+    molecule_redhat:
+      - "nano"
+    molecule_redhat_host: []
+    molecule_redhat_group: []
+
+    molecule_absent:
+      - "bzip2"
+    molecule_absent_group:
+      - "htop"
+    molecule_absent_host:
+      - "mtr"
+
+    molecule_merged: []
+    molecule_debian_merged: []
+    molecule_redhat_merged: []
+    molecule_absent_merged: []
+
+  tasks:
+    - name: SmokeTests
+      ansible.builtin.debug:
+        msg:
+          - "ansible_version => {{ansible_version}}"
+          - "ansible_distribution => {{ ansible_distribution }}"
+          - "ansible_distribution_major_version => {{ ansible_distribution_major_version }}"
+          - "ansible_os_family  => {{ ansible_os_family}}"
+          - "ansible_system  => {{ ansible_system }}"
+
+    - name: Debian/Ubuntu | Build installed molecule list
+      ansible.builtin.set_fact:
+        molecule_debian_merged: "{{ molecule_debian_merged + [item] }}"
+      with_items:
+        - "{{ molecule }}"
+        - "{{ molecule_group }}"
+        - "{{ molecule_host }}"
+        - "{{ molecule_debian }}"
+        - "{{ molecule_debian_host }}"
+        - "{{ molecule_debian_group }}"
+
+    - name: Debian/Ubuntu | check installed molecule
+      ansible.builtin.package:
+        name: "{{ molecule_debian_merged }}"
+        state: present
+      when:
+        - ansible_distribution in [ "Debian", "Ubuntu" ]
+      check_mode: true
+      register: molecule_debian_molecule
+      failed_when: (molecule_debian_molecule is changed) or (molecule_debian_molecule is failed)
+
+    - name: RedHat/CentOS | Build installed molecule list
+      ansible.builtin.set_fact:
+        molecule_redhat_merged: "{{ molecule_redhat_merged + [item] }}"
+      with_items:
+        - "{{ molecule }}"
+        - "{{ molecule_group }}"
+        - "{{ molecule_host }}"
+        - "{{ molecule_redhat }}"
+        - "{{ molecule_redhat_host }}"
+        - "{{ molecule_redhat_group }}"
+
+    - name: RedHat/CentOS | check installed molecule
+      ansible.builtin.package:
+        name: "{{ molecule_redhat_merged }}"
+        state: present
+      when:
+        - ansible_distribution in [ "CentOS", "RedHat", "Fedora", "Rocky", "AlmaLinux", "Amazon" ]
+      check_mode: true
+      register: molecule_redhat_molecule
+      failed_when: (molecule_redhat_molecule is changed) or (molecule_redhat_molecule is failed)
+
+    - name: Build absent list
+      ansible.builtin.set_fact:
+        molecule_absent_merged: "{{ molecule_absent_merged + [item] }}"
+      with_items:
+        - "{{ molecule_absent }}"
+        - "{{ molecule_absent_group }}"
+        - "{{ molecule_absent_host }}"
+
+    - name: check absent list
+      ansible.builtin.package:
+        name: "{{ molecule_absent_merged }}"
+        state: absent
+      check_mode: true
+      register: molecule_absent_molecule
+      failed_when: (molecule_absent_molecule is changed) or (molecule_absent_molecule is failed)

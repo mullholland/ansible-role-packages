@@ -1,0 +1,13 @@
+---
+- name: Prepare
+  hosts: all
+  become: true
+  gather_facts: true
+
+  tasks:
+    - name: Install packages to test absent parts
+      ansible.builtin.package:
+        name:
+          - "bzip2"
+          - "unzip"
+        state: present

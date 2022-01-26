@@ -1,0 +1,34 @@
+---
+# global/group/host seperation is meant to allow merging of package groups
+# according to groupmemberships
+
+# packages are the same for all servers, regardless of ansible_os_family
+# differentiates between global/group/host
+packages: []
+packages_group: []
+packages_host: []
+
+# packages_debian are only for debian/ubuntu ased systems
+# differentiates between global/group/host
+packages_debian: []
+packages_debian_group: []
+packages_debian_host: []
+
+# packages_debian are only for redhat/Centos (rocky/almalinux/amazon) based systems
+# differentiates between global/group/host
+packages_redhat: []
+packages_redhat_group: []
+packages_redhat_host: []
+
+
+# packages_absent is the same for all
+# differentiates between global/group/host
+packages_absent: []
+packages_absent_group: []
+packages_absent_host: []
+
+# Initialise empty for later merging
+packages_merged: []
+packages_debian_merged: []
+packages_redhat_merged: []
+packages_absent_merged: []

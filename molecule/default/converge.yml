@@ -1,0 +1,27 @@
+---
+- name: Converge
+  hosts: all
+  become: true
+  gather_facts: true
+  vars:
+    packages:
+      - "ethtool"
+    packages_group:
+      - "bc"
+    packages_host:
+      - "zip"
+
+    packages_debian:
+      - "nethogs"
+
+    packages_redhat:
+      - "nano"
+
+    packages_absent:
+      - "bzip2"
+    packages_absent_group:
+      - "htop"
+    packages_absent_host:
+      - "mtr"
+  roles:
+    - role: "ansible-role-packages"
