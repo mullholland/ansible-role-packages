@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: Install packages which do not need customization.
+  homepage: https://mullholland.net
+  topics: development, system, ansible, molecule, tox, playbook
