@@ -28,7 +28,6 @@ packages_absent_group: []
 packages_absent_host: []
 
 # Initialise empty for later merging
-packages_merged: []
 packages_debian_merged: []
 packages_redhat_merged: []
 packages_absent_merged: []
