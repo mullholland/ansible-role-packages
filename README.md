@@ -1,11 +1,10 @@
-# [packages](#packages)
+# [Ansible role packages](#packages)
 
 Install packages which do not need customization.
 
-|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![github](https://github.com/mullholland/ansible-role-packages/workflows/Ansible%20Molecule/badge.svg)](https://github.com/mullholland/ansible-role-packages/actions)|[![gitlab](https://gitlab.com/opensourceunicorn/ansible-role-packages/badges/master/pipeline.svg)](https://gitlab.com/opensourceunicorn/ansible-role-packages)|[![quality](https://img.shields.io/ansible/quality/57704)](https://galaxy.ansible.com/mullholland/packages)|[![downloads](https://img.shields.io/ansible/role/d/57704)](https://galaxy.ansible.com/mullholland/packages)|[![Version](https://img.shields.io/github/release/mullholland/ansible-role-packages.svg)](https://github.com/mullholland/ansible-role-packages/releases/)|
-
+|GitHub|Downloads|Version|
+|------|---------|-------|
+|[![github](https://github.com/mullholland/ansible-role-packages/actions/workflows/molecule.yml/badge.svg)](https://github.com/mullholland/ansible-role-packages/actions/workflows/molecule.yml)|[![downloads](https://img.shields.io/ansible/role/d/)](https://galaxy.ansible.com/mullholland/packages)|[![Version](https://img.shields.io/github/release/mullholland/ansible-role-packages.svg)](https://github.com/mullholland/ansible-role-packages/releases/)|
 ## [Example Playbook](#example-playbook)
 
 This example is taken from [`molecule/default/converge.yml`](https://github.com/mullholland/ansible-role-packages/blob/master/molecule/default/converge.yml) and is tested on each push, pull request and release.
@@ -57,6 +56,7 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
           - "unzip"
         state: present
 ```
+
 
 
 ## [Role Variables](#role-variables)
@@ -117,11 +117,11 @@ This role has been tested on these [container images](https://hub.docker.com/u/m
 
 |container|tags|
 |---------|----|
-|[EL](https://hub.docker.com/repository/docker/mullholland/docker-centos-systemd/general)|all|
-|[Amazon](https://hub.docker.com/repository/docker/mullholland/docker-amazonlinux-systemd/general)|Candidate|
-|[Fedora](https://hub.docker.com/repository/docker/mullholland/docker-fedora-systemd/general)|all|
-|[Ubuntu](https://hub.docker.com/repository/docker/mullholland/docker-ubuntu-systemd/general)|all|
-|[Debian](https://hub.docker.com/repository/docker/mullholland/docker-debian-systemd/general)|all|
+|[EL](https://hub.docker.com/r/mullholland/enterpriselinux)|all|
+|[Amazon](https://hub.docker.com/r/mullholland/amazonlinux)|Candidate|
+|[Fedora](https://hub.docker.com/r/mullholland/fedora/)|all|
+|[Ubuntu](https://hub.docker.com/r/mullholland/ubuntu)|all|
+|[Debian](https://hub.docker.com/r/mullholland/debian)|all|
 
 The minimum version of Ansible required is 2.10, tests have been done to:
 
@@ -129,7 +129,7 @@ The minimum version of Ansible required is 2.10, tests have been done to:
 - The current version.
 - The development version.
 
-If you find issues, please register them in [GitHub](https://github.com/mullholland/ansible-role-packages/issues)
+If you find issues, please register them in [GitHub](https://github.com/mullholland/ansible-role-packages/issues).
 
 ## [License](#license)
 
@@ -138,5 +138,3 @@ If you find issues, please register them in [GitHub](https://github.com/mullholl
 ## [Author Information](#author-information)
 
 [Mullholland](https://mullholland.net)
-
-Please consider [sponsoring me](https://github.com/sponsors/mullholland).
