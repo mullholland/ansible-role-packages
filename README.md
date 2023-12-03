@@ -4,7 +4,7 @@ Install packages which do not need customization.
 
 |GitHub|Downloads|Version|
 |------|---------|-------|
-|[![github](https://github.com/mullholland/ansible-role-packages/actions/workflows/molecule.yml/badge.svg)](https://github.com/mullholland/ansible-role-packages/actions/workflows/molecule.yml)|[![downloads](https://img.shields.io/ansible/role/d/)](https://galaxy.ansible.com/mullholland/packages)|[![Version](https://img.shields.io/github/release/mullholland/ansible-role-packages.svg)](https://github.com/mullholland/ansible-role-packages/releases/)|
+|[![github](https://github.com/mullholland/ansible-role-packages/actions/workflows/molecule.yml/badge.svg)](https://github.com/mullholland/ansible-role-packages/actions/workflows/molecule.yml)|[![downloads](https://img.shields.io/ansible/role/d/mullholland/packages)](https://galaxy.ansible.com/mullholland/packages)|[![Version](https://img.shields.io/github/release/mullholland/ansible-role-packages.svg)](https://github.com/mullholland/ansible-role-packages/releases/)|
 ## [Example Playbook](#example-playbook)
 
 This example is taken from [`molecule/default/converge.yml`](https://github.com/mullholland/ansible-role-packages/blob/master/molecule/default/converge.yml) and is tested on each push, pull request and release.
