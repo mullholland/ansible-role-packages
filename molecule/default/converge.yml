@@ -1,7 +1,6 @@
 ---
 - name: Converge
   hosts: all
-  become: true
   gather_facts: true
   vars:
     packages:
@@ -24,4 +23,4 @@
     packages_absent_host:
       - "mtr"
   roles:
-    - role: "ansible-role-packages"
+    - role: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') }}"
