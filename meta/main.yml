@@ -14,8 +14,14 @@ galaxy_info:
         - all
     - name: Amazon
       versions:
-        - Candidate
+        - all
     - name: Fedora
+      versions:
+        - all
+    - name: Rocky
+      versions:
+        - all
+    - name: AlmaLinux
       versions:
         - all
     - name: Ubuntu

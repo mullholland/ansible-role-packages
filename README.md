@@ -13,7 +13,6 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 ---
 - name: Converge
   hosts: all
-  become: true
   gather_facts: true
   vars:
     packages:
@@ -36,7 +35,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
     packages_absent_host:
       - "mtr"
   roles:
-    - role: "mullholland.packages"
+    - role: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') }}"
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/mullholland/ansible-role-packages/blob/master/molecule/default/prepare.yml):
@@ -45,7 +44,6 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 ---
 - name: Prepare
   hosts: all
-  become: true
   gather_facts: true
 
   tasks:
@@ -56,7 +54,6 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
           - "unzip"
         state: present
 ```
-
 
 
 ## [Role Variables](#role-variables)
@@ -108,9 +105,6 @@ packages_absent_merged: []
 
 This role is a part of many compatible roles. Have a look at [the documentation of these roles](https://mullholland.net) for further information.
 
-Here is an overview of related roles:
-![dependencies](https://raw.githubusercontent.com/mullholland/ansible-role-packages/png/requirements.png "Dependencies")
-
 ## [Compatibility](#compatibility)
 
 This role has been tested on these [container images](https://hub.docker.com/u/mullholland):
@@ -118,16 +112,19 @@ This role has been tested on these [container images](https://hub.docker.com/u/m
 |container|tags|
 |---------|----|
 |[EL](https://hub.docker.com/r/mullholland/enterpriselinux)|all|
-|[Amazon](https://hub.docker.com/r/mullholland/amazonlinux)|Candidate|
+|[Amazon](https://hub.docker.com/r/mullholland/amazonlinux)|all|
 |[Fedora](https://hub.docker.com/r/mullholland/fedora/)|all|
+|[Rocky](https://hub.docker.com/r/mullholland/rockylinux)|all|
+|[AlmaLinux](https://hub.docker.com/r/mullholland/almalinux)|all|
 |[Ubuntu](https://hub.docker.com/r/mullholland/ubuntu)|all|
 |[Debian](https://hub.docker.com/r/mullholland/debian)|all|
+|[CentOS](https://hub.docker.com/r/mullholland/centos)|all|
 
 The minimum version of Ansible required is 2.10, tests have been done to:
 
+- The version before the previous version.
 - The previous version.
 - The current version.
-- The development version.
 
 If you find issues, please register them in [GitHub](https://github.com/mullholland/ansible-role-packages/issues).
 
