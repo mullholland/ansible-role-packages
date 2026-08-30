@@ -112,7 +112,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/m
 |container|tags|
 |---------|----|
 |[EL](https://hub.docker.com/r/mullholland/enterpriselinux)|all|
-|[Amazon](https://hub.docker.com/r/mullholland/amazonlinux)|Candidate|
+|[Amazon](https://hub.docker.com/r/mullholland/amazonlinux)|all|
 |[Fedora](https://hub.docker.com/r/mullholland/fedora/)|all|
 |[Rocky](https://hub.docker.com/r/mullholland/rockylinux)|all|
 |[AlmaLinux](https://hub.docker.com/r/mullholland/almalinux)|all|
